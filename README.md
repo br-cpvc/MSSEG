@@ -17,7 +17,7 @@ flair_path = 'examples/T2_FLAIR';
 Note that the image paths are passed without the extensions. Images can be both NIFTI or NIFTI.gz. Then, the options are set. In this case, we just adjust the method to run with the GPU, and we select the ```options.debug``` to also save all the intermediate files.
 
 ```
-options.gpu = 0;          % use gpu
+options.gpu = 1;          % use gpu
 options.debug = 1;        % save intermediate files.
 ```
 Finally, the `msseg` method is invoked using this command:
