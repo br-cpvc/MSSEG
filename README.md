@@ -41,14 +41,23 @@ Similarly, the method can be also run using only the T1-w modality as follows:
 In general, all the available options in the software are set to values that are known to work well in most of the cases. However, each of these can be tuned in the `options` variable passed as an input:
 
 +`options.prior`:  The prior variable controls the amount of prior probability information used by the membership functions  (default 0.025)
+
 +`options.weighting`: Fuzzy factor exponent in Fuzzy C-means clustering (default 2)
+
 +`options.maxiter`: Number of maximum iterations during energy minimization FCM (default 200)
+
 +`options.num_neigh`: Radius of the neighborhood used in spatial contraint (default 1)
+
 +`options.dim`: Dimension of the neighborhood (default 2)
+
 +`options.term`:  Minimum error in energy minimization to stop (default 1E-3)
+
 +`options.gpu`: Use GPU (default 0)
+
 +`options.alpha`:  This parameter regulates the minimum intensity considered in FLAIR candidates (default 3)
+
 +`options.info`:  Show information during tissue segmentation (default 0)
+
 +`options.debug`:  Save registered and intermediate files (default 0)
 
 
