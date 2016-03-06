@@ -2,7 +2,9 @@
 
 # MSSEG: Multiple Sclerosis brain tissue SEGmentation method for MR patient images
 
-Over the last few years, the increasing interest in brain tissue volume measurements on clinical settings has lead to the development of a wide number of automated tissue segmentation methods. However, white matter lesions are known to reduce the accuracy of automated tissue segmentation methods, which requires manual annotation of the lesions and refilling them before segmentation, which is tedious and time-consuming. __MSSEG__ is  a new, fully automated T1-w/FLAIR tissue segmentation approach designed to deal with images in the presence of WM lesions. This approach integrates a robust partial volume tissue segmentation with WM outlier rejection and filling, combining intensity and probabilistic and morphological prior maps.
+Over the last few years, the increasing interest in brain tissue volume measurements on clinical settings has lead to the development of a wide number of automated tissue segmentation methods. However, white matter lesions are known to reduce the accuracy of automated tissue segmentation methods, which requires manual annotation of the lesions and refilling them before segmentation, which is tedious and time-consuming. 
+
+__MSSEG__ is  a new, fully automated T1-w/FLAIR tissue segmentation approach designed to deal with images in the presence of WM lesions. This approach integrates a robust partial volume tissue segmentation with WM outlier rejection and filling, combining intensity and probabilistic and morphological prior maps.a
 
 # Dependencies:
 + So far, the method only runs on GNU/Linux 64 bits if [NiftyReg](http://cmictig.cs.ucl.ac.uk/wiki/index.php/NiftyReg) is not installed in the host system. If NiftyReg is installed in your system, just change the path to the NiftyReg binaries in `register_prior.m` function.
@@ -57,8 +59,10 @@ In general, all the available options in the software are set to values that are
 +`options.alpha`:  This parameter regulates the minimum intensity considered in FLAIR candidates (default 3)
 
 +`options.info`:  Show information during tissue segmentation (default 0)
-
+a
 +`options.debug`:  Save registered and intermediate files (default 0)
 
+
+# Credits:
 
 [NeuroImage Computing Group](http://atc.udg.edu/nic/research.html), VICOROB [Vision and Robotics Institute](vicorob.udg.edu), University of Girona.
