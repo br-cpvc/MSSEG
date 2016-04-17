@@ -63,7 +63,7 @@ function [seg_out, pve_out] = estimate_tissue(input_image, brainmask, csf_prior,
     seg_out = zeros(size(input_image));
 
     % create new atlases CSFGM and GMWM from the original three CSF,GM and WM atlases. 
-    min_prob = 0.5;
+    min_prob = 0.4;
     pv1mask = ((csf_prior > min_prob) & (gm_prior > min_prob));
     csfgm_prior = ((csf_prior + gm_prior) ./ 2) .* pv1mask;
     pv2mask = ((gm_prior > min_prob) & (wm_prior > min_prob));
