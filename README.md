@@ -59,8 +59,8 @@ In general, all the available options in the software are set to values that are
 +`options.alpha`:  This parameter regulates the minimum intensity considered in FLAIR candidates (default 3)
 
 +`options.info`:  Show information during tissue segmentation (default 0)
-a
-+`options.debug`:  Save registered and intermediate files (default 0)
+
++`options.debug`:  Save registered and intermediate files. If selected, intermediate files are saved in the same input folder inside the hidden folder `.run`. (default 0)
 
 
 # Credits:
