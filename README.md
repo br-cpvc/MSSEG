@@ -60,9 +60,30 @@ In general, all the available options in the software are set to values that are
 
 +`options.info`:  Show information during tissue segmentation (default 0)
 
-+`options.debug`:  Save registered and intermediate files. If selected, intermediate files are saved in the same input folder inside the hidden folder `.run`. (default 0)
++`options.debug`:  Save registered and intermediate files. If selected, intermediate files are conserved in the same image folder (`(path/to/image/.run/`) (default 0)
 
 
 # Credits:
 
 [NeuroImage Computing Group](http://atc.udg.edu/nic/research.html), VICOROB [Vision and Robotics Institute](vicorob.udg.edu), University of Girona.
+
+If you use this method, please cite us as: 
+
+Valverde, S., Oliver, A., Roura, E., González-villà, S., Pareto, D., Vilanova, J.C., Ramió-torrentà, L., Rovira, À., Lladó, X., 2017. Automated tissue segmentation of MR brain images in the presence of white matter lesions. Med. Image Anal. 35, 446–457. doi:10.1016/j.media.2016.08.014
+
+Bibtex source:
+```
+@article{Valverde2017,
+author = {Valverde, Sergi and Oliver, Arnau and Roura, Eloy and Gonz{\'{a}}lez-vill{\`{a}}, Sandra and Pareto, Deborah and Vilanova, Joan C and Rami{\'{o}}-torrent{\`{a}}, Llu{\'{i}}s and Rovira, {\`{A}}lex and Llad{\'{o}}, Xavier},
+doi = {10.1016/j.media.2016.08.014},
+issn = {1361-8415},
+journal = {Medical Image Analysis},
+keywords = {Brain,MRI,Multiple sclerosis,Automatic tissue segm},
+pages = {446--457},
+publisher = {Elsevier B.V.},
+title = {{Automated tissue segmentation of MR brain images in the presence of white matter lesions}},
+url = {http://dx.doi.org/10.1016/j.media.2016.08.014},
+volume = {35},
+year = {2017}
+}
+```
