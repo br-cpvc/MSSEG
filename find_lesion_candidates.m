@@ -1,4 +1,4 @@
-function [lesion_candidates, T1_refilled] = find_lesion_candidates(flair_img, ...
+function [lesion_candidates, lesion_candidate_classes, lesion_candidate_cc, flair_hyper_regions, hyper_map, T1_refilled] = find_lesion_candidates(flair_img, ...
                                                       t1_image,...
                                                       seg_out, ...
                                                       pve_out,...
@@ -82,6 +82,8 @@ function [lesion_candidates, T1_refilled] = find_lesion_candidates(flair_img, ..
     n_mask(hyper_map> 0) = 0;
 
     lesion_candidates = zeros(size(pve_out));
+    lesion_candidate_classes = zeros(size(pve_out));
+    lesion_candidate_cc = zeros(size(pve_out));
     removed_candidates = zeros(size(pve_out));
     cortex = prior_struct== 2;
     for class=4:-1:2
@@ -119,6 +121,8 @@ function [lesion_candidates, T1_refilled] = find_lesion_candidates(flair_img, ..
                 end
                 pve_out(cv) = 5;
                 lesion_candidates(cv) = 1;
+                lesion_candidate_classes(cv) = 1;
+                lesion_candidate_cc(cv) = c * 2;
                 continue;
             end
 
@@ -143,6 +147,8 @@ function [lesion_candidates, T1_refilled] = find_lesion_candidates(flair_img, ..
                 end
                 pve_out(hyper_voxels) = 5;
                 lesion_candidates(hyper_voxels) = 1;
+                lesion_candidate_classes(hyper_voxels) = 2;
+                lesion_candidate_cc(hyper_voxels) = c * 2 + 1;
                 continue;
             end
 

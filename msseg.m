@@ -121,7 +121,7 @@ function [seg_out, pve_out] = msseg(T1_path, brainmask_path, flair_path, options
     parameters.connectivity = 4;
     parameters.debug = options.debug;
     t = tic;
-    [lesion_candidates, refilled_scan] = find_lesion_candidates(flair_scan,...
+    [lesion_candidates, lesion_candidate_classes, lesion_candidate_cc, flair_hyper_regions, hyper_map, refilled_scan] = find_lesion_candidates(flair_scan,...
                                                       input_image, ...
                                                       seg_out,...
                                                       pve_out,...
@@ -152,6 +152,18 @@ function [seg_out, pve_out] = msseg(T1_path, brainmask_path, flair_path, options
        input_img.img = lesion_candidates;
        save_nifti(input_img, fullfile(image_folder, '.run', [image_name,'_',out_name,'_refilled_candidates']));
    
+       input_img.img = lesion_candidate_classes;
+       save_nifti(input_img, fullfile(image_folder, '.run', [image_name,'_',out_name,'_refilled_candidate_classes']));
+
+       input_img.img = lesion_candidate_cc;
+       save_nifti(input_img, fullfile(image_folder, '.run', [image_name,'_',out_name,'_refilled_candidate_cc']));
+
+       input_img.img = flair_hyper_regions;
+       save_nifti(input_img, fullfile(image_folder, '.run', [image_name,'_',out_name,'_flair_hyper_regions']));
+
+       input_img.img = hyper_map;
+       save_nifti(input_img, fullfile(image_folder, '.run', [image_name,'_',out_name,'_hyper_map']));
+
        input_img.img = refilled_scan;
        save_nifti(input_img, fullfile(image_folder,'.run', [image_name,'_', out_name,'_t1_refilled']));
    end
