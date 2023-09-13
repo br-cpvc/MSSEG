@@ -49,7 +49,14 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
 
     % first we perform an affine registration followed by a deformable registration.
     if ~exist(fullfile(image_folder,'.run','atlas_transf.nii')) || force_registration
+        if display
+            disp(['executing: ', reg_aladin]);
+        end
         t = system([reg_aladin,' -voff']);
+
+        if display
+            disp(['executing: ', reg_f3d]);
+        end
         t = system([reg_f3d, ' -voff']);
     end
     if display
@@ -63,6 +70,9 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
                      '-trans "', fullfile(image_folder,'.run','transf.cpp.nii'), '" ',...
                     '-res "',   fullfile(image_folder,'.run','r_struct.nii.gz'), '" ',...
                     ' -inter 0'];
+    if display
+        disp(['executing: ', reg_resample_aff_struct]);
+    end
     t = system([reg_resample_aff_struct, ' -voff']);
 
 
@@ -72,6 +82,9 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
                     '-trans "', fullfile(image_folder,'.run','transf.cpp.nii'), '" ',...
                     '-res "',   fullfile(image_folder,'.run','r_csf_prior.nii'), '" ',...
                     ' -inter 1'];
+    if display
+        disp(['executing: ', reg_resample_aff_csf]);
+    end
     t = system([reg_resample_aff_csf, ' -voff']);
 
     reg_resample_aff_gm =  [niftyreg_path,'/reg_resample ',...
@@ -80,6 +93,9 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
                     '-trans "', fullfile(image_folder,'.run','transf.cpp.nii'), '" ',...
                     '-res "',   fullfile(image_folder,'.run','r_gm_prior.nii'), '" ',...
                     ' -inter 1'];
+    if display
+        disp(['executing: ', reg_resample_aff_gm]);
+    end
     t = system([reg_resample_aff_gm, ' -voff']);
 
 
@@ -89,6 +105,9 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
                     '-trans "', fullfile(image_folder,'.run','transf.cpp.nii'), '" ',...3
                     '-res "',   fullfile(image_folder,'.run','r_wm_prior.nii'), '" ',...
                     ' -inter 1'];
+    if display
+        disp(['executing: ', reg_resample_aff_wm]);
+    end
     t = system([reg_resample_aff_wm, ' -voff']);
 
 
