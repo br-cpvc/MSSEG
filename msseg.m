@@ -19,6 +19,7 @@ function [seg_out, pve_out] = msseg(T1_path, brainmask_path, flair_path, options
 %             options.gpu = Use GPU (default 0)
 %             options.info = Show information during tissue segmentation (default 0)
 %             options.debug = Save registered and intermediate files (default 0)
+%             options.deterministic = deterministic output (default 0)
 %
 % - outputs:
 %   seg_out = 3 class labelled segmentation (1) CSF, (2) GM and (3) WM.
@@ -83,6 +84,7 @@ function [seg_out, pve_out] = msseg(T1_path, brainmask_path, flair_path, options
  
     options_register.force_reg = ~options.debug;
     options_register.info = options.info;
+    options_register.deterministic = options.deterministic;
     tic;
     [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_register);
     t = toc;
@@ -120,6 +122,7 @@ function [seg_out, pve_out] = msseg(T1_path, brainmask_path, flair_path, options
     parameters.alpha = options.alpha;
     parameters.connectivity = 4;
     parameters.debug = options.debug;
+    parameters.deterministic = options.deterministic;
     t = tic;
     [lesion_candidates, lesion_candidate_classes, lesion_candidate_cc, flair_hyper_regions, hyper_map, refilled_scan] = find_lesion_candidates(flair_scan,...
                                                       input_image, ...
@@ -235,6 +238,10 @@ function options = parse_options(options)
        % Debug mode: save also intermediate files
        if ~isfield(options,'debug')
            options.debug = 0;         
+       end
+       % Deterministic mode
+       if ~isfield(options,'deterministic')
+           options.deterministic = 0;
        end
        % option output name 
        if ~isfield(options,'name')

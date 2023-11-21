@@ -164,6 +164,10 @@ function [lesion_candidates, lesion_candidate_classes, lesion_candidate_cc, flai
     tic;
     T1_refilled = t1_image;
     CC = conn2d(lesion_candidates, connectivity);
+    if parameters.deterministic == 1
+        % https://se.mathworks.com/help/matlab/math/updating-your-random-number-generator-syntax.html
+        randn('seed',135);
+    end
     for c=1:CC.NumObjects
         clear t1_slice;
         clear wm_slice;

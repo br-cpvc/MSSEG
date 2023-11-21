@@ -62,6 +62,7 @@ In general, all the available options in the software are set to values that are
 
 +`options.debug`:  Save registered and intermediate files. If selected, intermediate files are conserved in the same image folder (`(path/to/image/.run/`) (default 0)
 
++`options.deterministic`:  Ensure that the same inputs gives same output (default 0)
 
 # Credits:
 

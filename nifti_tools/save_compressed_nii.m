@@ -10,7 +10,10 @@ function save_compressed_nii(nii_image, image_path)
 % ****************************************************************  
     
     save_untouch_nii(nii_image, [image_path,'_tmp_.nii']); 
-    gzip([image_path,'_tmp_.nii']);
+    %gzip([image_path,'_tmp_.nii']);
+    % -n makes the output deterministic because it does not include
+    % date and time for the files
+    [status, output] = system(['gzip -n ',image_path,'_tmp_.nii']);
     movefile([image_path,'_tmp_.nii.gz'], [image_path,'.nii.gz']);
     % if current image exists delete it
     if exist([image_path,'_tmp_.nii'],'file')

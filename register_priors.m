@@ -12,6 +12,7 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
 %   -> options_register:
 %             options_register.info = Show information during registration (default 0)
 %             options_register.force_reg = Force registration (default 0)
+%             options_register.deterministic = deterministic output (default 0)
 %  -outputs:
 %      csf_prior = CSF prior probability atlas registered into the T1-w space
 %      gm_prior = GM prior probability atlas registered into the T1-w space
@@ -46,6 +47,12 @@ function [csf_prior, gm_prior, wm_prior, st] = register_priors(T1_path, options_
                 ' -cpp "',  fullfile(image_folder,'.run','transf.cpp.nii"'), ...
                 ' -res "', fullfile(image_folder,'.run','w_atlas_transf.nii"')];
 
+    if options_register.deterministic == 1
+        deterministic_parameters = [' -omp 1']
+        % append deterministic_parameters to reg_aladin and reg_f3d
+        reg_aladin = [reg_aladin, deterministic_parameters]
+        reg_f3d = [reg_f3d, deterministic_parameters]
+    end
 
     % first we perform an affine registration followed by a deformable registration.
     if ~exist(fullfile(image_folder,'.run','atlas_transf.nii')) || force_registration
